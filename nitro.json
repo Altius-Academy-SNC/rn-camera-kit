@@ -1,0 +1,23 @@
+{
+  "cxxNamespace": ["rncamerakit"],
+  "ios": {
+    "iosModuleName": "RnCameraKit"
+  },
+  "android": {
+    "androidNamespace": ["rncamerakit"],
+    "androidCxxLibName": "rncamerakit"
+  },
+  "autolinking": {
+    "RnCameraKit": {
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "RnCameraKit"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "RnCameraKit"
+      }
+    }
+  },
+  "ignorePaths": ["node_modules"]
+}
