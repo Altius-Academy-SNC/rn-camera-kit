@@ -1,3 +1,5 @@
+import NitroModules
+
 class RnCameraKit: HybridRnCameraKitSpec {
     func scanDocument() throws -> Promise<ScannedDocument> {
         // VisionKit (VNDocumentCameraViewController) implementation not
