@@ -6,9 +6,15 @@ Built as a [Nitro Module](https://nitro.margelo.com/) (Kotlin + Swift, no Object
 
 ## Status
 
-Scaffolded — package builds, lints, and the Android example compiles end-to-end (`yarn turbo run build:android`, verified locally). The actual native scan/KYC implementation (Kotlin wrapping ML Kit Document Scanner, Swift wrapping VisionKit) hasn't been written yet.
+- **Android document scanning: implemented and verified**, including a real emulator run (tap "Scan document" → Google ML Kit's document scanner → resolves with page/PDF `file://` URIs).
+- **iOS document scanning: not implemented.** `scanDocument()` currently rejects with "not implemented yet" — the Swift side compiles (verified in CI on `macos-latest`), but the VisionKit (`VNDocumentCameraViewController`) implementation itself hasn't been written. This machine has no Xcode, so iOS work has to happen elsewhere.
+- **KYC: not started.**
 
 Companion package: [django-camera-kit](https://github.com/Altius-Academy-SNC/django-camera-kit) — the KYC module here is intentionally hard-coupled to a `django-camera-kit` backend (no generic backend abstraction), matching that package's `/kyc/verify/` endpoint contract.
+
+### A note on testing Android document scanning
+
+`GmsDocumentScanning` dynamically downloads its scanner UI as a Play Services module on first use. On an emulator image without a full/recent Play Services (e.g. a plain "Google APIs" AVD, `PlayStore.enabled=no` with `tag.id=google_apis`), this fails with `MlKitException: Feature not available in the current version of the Google Play services` — that's an emulator environment issue, not a bug. Use a `google_apis_playstore`-tagged AVD (or a real device) instead.
 
 ## Development
 
